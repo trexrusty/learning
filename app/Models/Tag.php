@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employer extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    public function listings(){
-        return $this->hasMany(Listing::class);
+
+    public function Listing(){
+        return $this->belongsToMany(Listing::class);
     }
 }
