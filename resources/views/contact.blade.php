@@ -2,5 +2,5 @@
     <x-slot:heading>
         Contact
     </x-slot:heading>
-    <h1>hello contact</h1>
+    <h1>hello contact me</h1>
 </x-layout>
