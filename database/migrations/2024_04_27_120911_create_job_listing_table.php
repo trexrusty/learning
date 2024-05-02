@@ -16,7 +16,7 @@ return new class extends Migration
 //            $table->unsignedBigInteger('employer_id');
             $table->foreignIdFor(\App\Models\Employer::class);
             $table->string('title');
-            $table->string('salary');
+            $table->integer('salary');
             $table->timestamps();
         });
     }
