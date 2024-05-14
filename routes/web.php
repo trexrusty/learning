@@ -1,39 +1,19 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use App\Http\Controllers\JobsController;
 
+Route::view('/', 'main');
 
-Route::get('/', function () {
-    return view('main');
+Route::controller(JobsController::class)->group(function(){
+    Route::get('/jobs', 'index');
+    Route::get('/jobs/create', 'create');
+    Route::post('/jobs', 'store');
+    Route::get('/jobs/{job}','show');
+    Route::get('/jobs/{job}/edit','edit');
+    Route::patch('/jobs/{job}','update');
+    Route::delete('/jobs/{job}','destroy');
 });
-
-Route::get('/jobs', function () {
-
-    $jobs = Listing::with('employer')->latest()->paginate(perPage:15);
-
-    return view('jobs', [
-        'listings' => $jobs
-    ]);
-});
-Route::get('/jobs/create', function () {
-    return view('jobcreate');
-});
-Route::post('/job', function () {
-
-    Listing::create([
-        'title' => request('title'),
-        'salary' => request('salary'),
-        'employer_id' => 1
-    ]);
-    return redirect('/jobs');
-});
-
-Route::get('/jobs/{id}', function ($id) {
-        $job = Listing::find($id);
-    return view('jobshow', ['job' => $job]);
-});
-
-
 
 Route::get('/contact', function () {
     return view('contact');
